@@ -1,5 +1,17 @@
 console.log("JS LOADED");
+
+// -----------------------------------------------------
+// ELEMENTS THAT MUST EXIST BEFORE ANY FUNCTION USES THEM
+// -----------------------------------------------------
+const viraText = document.getElementById('viraText');
+const agentInfo = document.getElementById('agentInfo');
+const goStudentWingBtn = document.getElementById('goStudentWingBtn');
+const xpValue = document.getElementById('xpValue');
+const xpBar = document.getElementById('xpBar');
+
+// -----------------------------------------------------
 // NAVIGATION
+// -----------------------------------------------------
 const navButtons = document.querySelectorAll('.nav-btn');
 const views = {
   characters: document.getElementById('view-characters'),
@@ -41,41 +53,46 @@ navButtons.forEach(btn => {
   });
 });
 
+// -----------------------------------------------------
 // CHARACTER SELECTION
+// -----------------------------------------------------
 const characterCards = document.querySelectorAll('.character-card');
-const agentInfo = document.getElementById('agentInfo');
-const goStudentWingBtn = document.getElementById('goStudentWingBtn');
-const viraText = document.getElementById('viraText');
-
 let selectedAgent = null;
 
 characterCards.forEach(card => {
   card.addEventListener('click', () => {
+
+    // Visual selection
     characterCards.forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
 
+    // Store agent
     selectedAgent = {
       name: card.dataset.agent,
       focus: card.dataset.focus
     };
 
+    // Update UI
     agentInfo.textContent = `${selectedAgent.name} selected · Focus: ${selectedAgent.focus}`;
     goStudentWingBtn.disabled = false;
 
+    // VIRA message
     viraText.textContent = `Agent ${selectedAgent.name} online. You may now enter the Student Wing.`;
   });
 });
 
+// -----------------------------------------------------
 // ENTER STUDENT WING
+// -----------------------------------------------------
 goStudentWingBtn.addEventListener('click', () => {
   if (!selectedAgent) return;
   setView('studentWing');
 });
 
+// -----------------------------------------------------
 // XP SYSTEM
+// -----------------------------------------------------
 let xp = 0;
-const xpValue = document.getElementById('xpValue');
-const xpBar = document.getElementById('xpBar');
 
 function addXP(baseXP, area) {
   let bonus = 0;
@@ -95,7 +112,9 @@ function addXP(baseXP, area) {
     : `Calibration successful. +${baseXP} XP (${area}).`;
 }
 
+// -----------------------------------------------------
 // MICRO‑TASK
+// -----------------------------------------------------
 const taskOptions = document.querySelectorAll('.task-option');
 const taskFeedback = document.getElementById('taskFeedback');
 let taskCompleted = false;
