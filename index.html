@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VR Agency Console</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="app">
+    <!-- HEADER -->
+    <header>
+      <h1>VR Travel Agency Console</h1>
+      <div class="xp-display">
+        <span>XP: <span id="xpValue">0</span></span>
+        <div class="xp-bar"><div class="xp-bar-fill" id="xpBar"></div></div>
+      </div>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <main>
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div>
+          <h2>Areas</h2>
+
+          <button class="nav-btn active" data-view="characters">
+            Character Hub
+            <span>start</span>
+          </button>
+
+          <button class="nav-btn" data-view="studentWing">
+            Student Wing
+            <span>practice</span>
+          </button>
+
+          <button class="nav-btn" data-view="machinery">
+            Language Machinery
+            <span>grammar</span>
+          </button>
+
+          <button class="nav-btn" data-view="tools">
+            Language Tools
+            <span>communication</span>
+          </button>
+
+          <button class="nav-btn" data-view="mediator">
+            Language Mediator
+            <span>meaning</span>
+          </button>
+        </div>
+
+        <div>
+          <h2>Agent</h2>
+          <div id="agentInfo" class="agent-info">
+            No agent selected yet.
+          </div>
+        </div>
+      </aside>
+
+      <!-- CONTENT AREA -->
+      <section class="content">
+
+        <!-- CHARACTER HUB -->
+        <div id="view-characters">
+          <div class="top-actions">
+            <div>
+              <div class="section-title">Character Hub</div>
+              <div class="section-subtitle">
+                Choose your VR Agency Agent. Each one gives you a bonus in a different language area.
+              </div>
+            </div>
+            <button class="btn btn-primary" id="goStudentWingBtn" disabled>
+              Enter Student Wing
+            </button>
+          </div>
+
+          <div class="character-grid">
+            <div class="character-card" data-agent="Lexi" data-focus="Language Machinery">
+              <div class="character-tag">Vocabulary Specialist</div>
+              <div class="character-name">Lexi</div>
+              <div class="character-role">
+                Bonus XP in grammar & vocabulary puzzles.
+              </div>
+            </div>
+
+            <div class="character-card" data-agent="Kai" data-focus="Language Machinery">
+              <div class="character-tag">Grammar Navigator</div>
+              <div class="character-name">Kai</div>
+              <div class="character-role">
+                Bonus XP in future forms and conditionals.
+              </div>
+            </div>
+
+            <div class="character-card" data-agent="Sol" data-focus="Language Mediator">
+              <div class="character-tag">Mediation Expert</div>
+              <div class="character-name">Sol</div>
+              <div class="character-role">
+                Bonus XP in meaning-making and explanation tasks.
+              </div>
+            </div>
+
+            <div class="character-card" data-agent="Pixel" data-focus="Language Tools">
+              <div class="character-tag">Creative Designer</div>
+              <div class="character-name">Pixel</div>
+              <div class="character-role">
+                Bonus XP in announcements and brochure writing.
+              </div>
+            </div>
+
+            <div class="character-card" data-agent="Echo" data-focus="Language Tools">
+              <div class="character-tag">Speaking Helper</div>
+              <div class="character-name">Echo</div>
+              <div class="character-role">
+                Bonus XP in functional language and dialogues.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STUDENT WING -->
+        <div id="view-studentWing" style="display:none;">
+          <div class="top-actions">
+            <div>
+              <div class="section-title">Student Wing</div>
+              <div class="section-subtitle">
+                Short language challenges to calibrate your systems and earn XP.
+              </div>
+            </div>
+            <span class="pill">Micro-task · Adjectives</span>
+          </div>
+
+          <div class="task-card">
+            <div class="task-title">Break the Language Code</div>
+            <div class="task-question">
+              In English, where do adjectives usually go?<br>
+              Example: <strong>beautiful castle</strong>
+            </div>
+            <div class="task-options">
+              <button class="task-option" data-correct="true">
+                Before the noun
+              </button>
+              <button class="task-option">
+                After the noun
+              </button>
+            </div>
+            <div class="task-feedback" id="taskFeedback"></div>
+            <div class="task-meta">
+              Correct answer = +5 XP (Language Machinery)  
+              Your agent may give you a bonus.
+            </div>
+          </div>
+        </div>
+
+        <!-- LANGUAGE MACHINERY -->
+        <div id="view-machinery" style="display:none;">
+          <div class="section-title">Language Machinery</div>
+          <div class="section-subtitle">
+            Grammar, vocabulary, structures, accuracy.  
+            This is where the escape‑room puzzles begin.
+          </div>
+
+          <div class="task-card">
+            <div class="task-title">System Locked</div>
+            <div class="task-question">
+              The Machinery Room is offline.  
+              Solve the first puzzle to activate it.
+            </div>
+          </div>
+        </div>
+
+        <!-- LANGUAGE TOOLS -->
+        <div id="view-tools" style="display:none;">
+          <div class="section-title">Language Tools</div>
+          <div class="section-subtitle">
+            Functional language, communication, recommendations, announcements.
+          </div>
+
+          <div class="task-card">
+            <div class="task-title">System Locked</div>
+            <div class="task-question">
+              The Tools Room will activate after Machinery is online.
+            </div>
+          </div>
+        </div>
+
+        <!-- LANGUAGE MEDIATOR -->
+        <div id="view-mediator" style="display:none;">
+          <div class="section-title">Language Mediator</div>
+          <div class="section-subtitle">
+            Meaning-making, explanation, reformulation, cause/effect.
+          </div>
+
+          <div class="task-card">
+            <div class="task-title">System Locked</div>
+            <div class="task-question">
+              The Mediator Room will activate after Tools are online.
+            </div>
+          </div>
+        </div>
+
+        <!-- VIRA PANEL -->
+        <div class="vira-panel" id="viraPanel">
+          <div class="vira-avatar"></div>
+          <div>
+            <div class="vira-label">VIRA · Virtual Interactive Route Advisor</div>
+            <div class="vira-text" id="viraText">
+              Welcome, Agent. Choose your character to initialise the VR Travel Agency systems.
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
