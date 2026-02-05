@@ -1,3 +1,4 @@
+console.log("JS LOADED");
 // NAVIGATION
 const navButtons = document.querySelectorAll('.nav-btn');
 const views = {
